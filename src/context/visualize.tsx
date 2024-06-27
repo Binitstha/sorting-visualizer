@@ -4,7 +4,7 @@ import { AlgorithmContextType, SortingAlgorithm } from "@/types/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const SortingAlgorithmContext = createContext<AlgorithmContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const SortingAlgorithmContextProvider = ({
@@ -17,7 +17,7 @@ export const SortingAlgorithmContextProvider = ({
     useState<SortingAlgorithm>("bubble");
   const [isSorting, setSorting] = useState(false);
   const [animationSpeed, setAnimationSpeed] =
-    useState<number>(Max_animate_speed);
+    useState<number>(20);
   const [isAnimationComplete, setIsAnimationComplete] =
     useState<boolean>(false);
 
@@ -76,7 +76,7 @@ export const useSortingAlgorithmContext = () => {
   const context = useContext(SortingAlgorithmContext);
   if (!context)
     throw new Error(
-      "useSortingAlgorithmContext must be used within a SortingAlgorithmContextProvider"
+      "useSortingAlgorithmContext must be used within a SortingAlgorithmContextProvider",
     );
   return context;
 };
