@@ -1,10 +1,14 @@
 "use client";
 import { Max_animate_speed, generateRandomNumber } from "@/lib/utils";
-import { AlgorithmContextType, SortingAlgorithm } from "@/types/types";
+import {
+  AlgorithmContextType,
+  Animations,
+  SortingAlgorithm,
+} from "@/types/types";
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const SortingAlgorithmContext = createContext<AlgorithmContextType | undefined>(
-  undefined,
+  undefined
 );
 
 export const SortingAlgorithmContextProvider = ({
@@ -15,10 +19,11 @@ export const SortingAlgorithmContextProvider = ({
   const [arrayToSort, setArrayToSort] = useState<number[]>([]);
   const [selectedAlgorithm, setSelectedAlgorithm] =
     useState<SortingAlgorithm>("bubble");
-  const [isSorting, setSorting] = useState(false);
+  const [isSorting, setIsSorting] = useState(false);
   const [animationSpeed, setAnimationSpeed] = useState<number>(50);
   const [isAnimationComplete, setIsAnimationComplete] =
     useState<boolean>(false);
+  const requireReset: boolean = false;
 
   useEffect(() => {
     resetArrayAndAnimate();
@@ -45,9 +50,50 @@ export const SortingAlgorithmContextProvider = ({
 
     setArrayToSort(tempArray);
     setIsAnimationComplete(false);
-    setSorting(false);
+    setIsSorting(false);
   };
-  const runAnimation = () => {};
+  const runAnimation = (animations: Animations) => {
+    setIsSorting(true);
+
+    const inverseSpeed = (1 / animationSpeed) * 200;
+    const arrayLines = document.getElementsByClassName("array-lines");
+
+    const updateClassList = (
+      indexes: number[],
+      addClassName: string,
+      removeClassName: string
+    ) => {
+      indexes.forEach((element) => {
+        arrayLines[element].classList.add(addClassName);
+        arrayLines[element].classList.remove(removeClassName);
+      });
+    };
+
+    const updateLineHeight = (
+      lineIndex: number,
+      newLineHeight: number | undefined
+    ) => {
+      if (newLineHeight === undefined) return;
+      (arrayLines[lineIndex] as HTMLElement).style.height =
+        `${newLineHeight}px`;
+    };
+
+    animations.forEach((animation, index) => {
+      setTimeout(() => {
+        const [values, isSwap] = animation;
+
+        if (!isSwap) {
+          updateClassList(values, "bg-red-300", "bg-green-300");
+          setTimeout(() => {
+            updateClassList(values, "bg-green-300", "bg-red-300");
+          }, inverseSpeed);
+        } else {
+          const [lineIndex, newLineHeight] = values;
+          updateLineHeight(lineIndex, newLineHeight);
+        }
+      }, index * inverseSpeed);
+    });
+  };
 
   const value = {
     arrayToSort,
@@ -55,13 +101,14 @@ export const SortingAlgorithmContextProvider = ({
     selectedAlgorithm,
     setSelectedAlgorithm,
     isSorting,
-    setSorting,
+    setIsSorting,
     animationSpeed,
     setAnimationSpeed,
     isAnimationComplete,
     setIsAnimationComplete,
     resetArrayAndAnimate,
     runAnimation,
+    requireReset,
   };
 
   return (
@@ -75,7 +122,7 @@ export const useSortingAlgorithmContext = () => {
   const context = useContext(SortingAlgorithmContext);
   if (!context)
     throw new Error(
-      "useSortingAlgorithmContext must be used within a SortingAlgorithmContextProvider",
+      "useSortingAlgorithmContext must be used within a SortingAlgorithmContextProvider"
     );
   return context;
 };

@@ -4,13 +4,16 @@ export interface AlgorithmContextType {
   selectedAlgorithm: SortingAlgorithm;
   setSelectedAlgorithm: (selectedAlgorithm: SortingAlgorithm) => void;
   isSorting: boolean;
-  setSorting: (isSorting: boolean) => void;
+  setIsSorting: (isSorting: boolean) => void;
   animationSpeed: number;
   setAnimationSpeed: (animationSpeed: number) => void;
   isAnimationComplete: boolean;
   setIsAnimationComplete: (isAnimationComplete: boolean) => void;
   resetArrayAndAnimate: () => void;
-  runAnimation: () => void;
+  runAnimation: (animations: Animations) => void;
+  requireReset: boolean;
 }
 
 export type SortingAlgorithm = {};
+
+export type Animations = [number[], boolean][];

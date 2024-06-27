@@ -11,9 +11,19 @@ import {
 import Link from "next/link";
 import { roboto, roboto_mono } from "./fonts";
 import { useSortingAlgorithmContext } from "@/context/visualize";
+import { useEffect } from "react";
 
 const Nav = () => {
-  const { resetArrayAndAnimate, isSorting } = useSortingAlgorithmContext();
+  const {
+    resetArrayAndAnimate,
+    isSorting,
+    setSelectedAlgorithm,
+    selectedAlgorithm,
+  } = useSortingAlgorithmContext();
+
+  useEffect(() => {
+    console.log(selectedAlgorithm);
+  }, [selectedAlgorithm]);
   return (
     <>
       <main
@@ -28,7 +38,7 @@ const Nav = () => {
         </div>
         <div className="flex gap-4 justify-center items-center">
           <div>
-            <Select>
+            <Select onValueChange={(value) => setSelectedAlgorithm(value)}>
               <SelectTrigger className="w-[180px]" disabled={isSorting}>
                 <SelectValue placeholder="Sort algorithm" />
               </SelectTrigger>

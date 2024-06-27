@@ -7,12 +7,18 @@ import { GrPowerReset } from "react-icons/gr";
 
 const AlgorithVisualizer = () => {
   const { arrayToSort, isSorting } = useSortingAlgorithmContext();
-  useEffect(() => {
-    console.log(arrayToSort);
-    console.log(isSorting);
-  }, [arrayToSort, isSorting]);
 
-  const { animationSpeed, setAnimationSpeed } = useSortingAlgorithmContext();
+  const {
+    animationSpeed,
+    setAnimationSpeed,
+    requireReset,
+    resetArrayAndAnimate,
+  } = useSortingAlgorithmContext();
+
+  const handleClick = () => {
+    if (requireReset) resetArrayAndAnimate();
+    return;
+  };
   return (
     <section className=" p-7 flex flex-col gap-5 relative px-16 h-[40rem]">
       <div
@@ -22,14 +28,17 @@ const AlgorithVisualizer = () => {
         {arrayToSort.map((value, index) => (
           <div
             key={index}
-            className=" h-[15rem] w-4 bg-stone-700 rounded-md rounded-b-none"
+            className="array-lines h-[15rem] w-4 bg-stone-700 rounded-md rounded-b-none"
             style={{ height: `${value}px` }}
           ></div>
         ))}
       </div>
       <div className=" flex gap-5 relative justify-center items-center">
         <div>
-          <div className=" cursor-pointer p-3 transition-all duration-500 rounded-full bg-stone-700 flex justify-center items-center">
+          <div
+            className=" cursor-pointer p-3 transition-all duration-500 rounded-full bg-stone-700 flex justify-center items-center"
+            onClick={() => handleClick}
+          >
             {isSorting ? <GrPowerReset /> : <FaPlay />}
           </div>
         </div>

@@ -1,3 +1,4 @@
+import { SortingAlgorithm } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -10,4 +11,18 @@ export const Min_animate_speed = 10;
 
 export const generateRandomNumber = (max: number, min: number) => {
   return Math.floor(Math.random() * (max - min + 1) + min);
+};
+
+export const generateAnimationArray = (
+  selectedAlgorithm: SortingAlgorithm,
+  isSorting: boolean,
+  array: number[],
+  runAnimation: (animations: Animation) => void
+) => {
+  switch (selectedAlgorithm) {
+    case "bubble":
+      break;
+    default:
+      break;
+  }
 };
