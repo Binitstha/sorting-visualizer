@@ -1,5 +1,5 @@
 const alogorithmInfo = () => {
-    return <>alogorithmInfo</>;
-  };
-  
-  export default alogorithmInfo
+  return <>alogorithmInfo</>;
+};
+
+export default alogorithmInfo;
