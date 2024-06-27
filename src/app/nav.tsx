@@ -11,11 +11,9 @@ import {
 import Link from "next/link";
 import { roboto, roboto_mono } from "./fonts";
 import { useSortingAlgorithmContext } from "@/context/visualize";
-import { Slider } from "@/components/ui/slider";
-import { useState } from "react";
 
 const Nav = () => {
-  const { resetArrayAndAnimate, isSorting,animationSpeed,setAnimationSpeed } = useSortingAlgorithmContext();
+  const { resetArrayAndAnimate, isSorting } = useSortingAlgorithmContext();
   return (
     <>
       <main
@@ -29,36 +27,26 @@ const Nav = () => {
           </Link>
         </div>
         <div className="flex gap-4 justify-center items-center">
-          <div className="flex gap-2 justify-center items-center w-36">
-            <p>{animationSpeed}x</p>
-            <Slider
-              defaultValue={[20]}
-              max={100}
-              disabled={isSorting}
-              step={10}
-              onValueChange={(value: number[]) => setAnimationSpeed(value[0])}
-            />
-          </div>
           <div>
             <Select>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-[180px]" disabled={isSorting}>
                 <SelectValue placeholder="Sort algorithm" />
               </SelectTrigger>
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Sort algorithm</SelectLabel>
-                  <SelectItem value="merge">merge</SelectItem>
-                  <SelectItem value="merge1">merge</SelectItem>
-                  <SelectItem value="merge12">merge</SelectItem>
-                  <SelectItem value="merge13">merge</SelectItem>
-                  <SelectItem value="merge14">merge</SelectItem>
+                  <SelectItem value="bubble">Bubble</SelectItem>
+                  <SelectItem value="quick">Quick</SelectItem>
+                  <SelectItem value="merge">Merge</SelectItem>
+                  <SelectItem value="insertion">Insertion</SelectItem>
+                  <SelectItem value="selection">Selection</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
           <div>
             <Select>
-              <SelectTrigger className="w-[180px]">
+              <SelectTrigger className="w-[180px]" disabled={isSorting}>
                 <SelectValue placeholder="Select size" />
               </SelectTrigger>
               <SelectContent>
@@ -76,7 +64,8 @@ const Nav = () => {
           <div>
             <button
               onClick={resetArrayAndAnimate}
-              className="border rounded-lg p-2 text-sm px-2"
+              disabled={isSorting}
+              className="border disabled:cursor-not-allowed rounded-lg p-2 text-sm px-2"
             >
               Randomize
             </button>

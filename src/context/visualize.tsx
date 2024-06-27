@@ -16,8 +16,7 @@ export const SortingAlgorithmContextProvider = ({
   const [selectedAlgorithm, setSelectedAlgorithm] =
     useState<SortingAlgorithm>("bubble");
   const [isSorting, setSorting] = useState(false);
-  const [animationSpeed, setAnimationSpeed] =
-    useState<number>(20);
+  const [animationSpeed, setAnimationSpeed] = useState<number>(50);
   const [isAnimationComplete, setIsAnimationComplete] =
     useState<boolean>(false);
 
