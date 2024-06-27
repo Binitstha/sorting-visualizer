@@ -10,8 +10,10 @@ import {
 } from "@/components/ui/select";
 import Link from "next/link";
 import { roboto, roboto_mono } from "./fonts";
+import { useSortingAlgorithmContext } from "@/context/visualize";
 
 const Nav = () => {
+  const { resetArrayAndAnimate } = useSortingAlgorithmContext();
   return (
     <>
       <main
@@ -51,16 +53,16 @@ const Nav = () => {
                 <SelectGroup>
                   <SelectLabel>select size</SelectLabel>
                   <SelectItem value="10">10</SelectItem>
-                  <SelectItem value="20">20</SelectItem>
-                  <SelectItem value="50">50</SelectItem>
-                  <SelectItem value="100">100</SelectItem>
-                  <SelectItem value="1000">1000</SelectItem>
+                  <SelectItem value="20">50</SelectItem>
+                  <SelectItem value="50">100</SelectItem>
+                  <SelectItem value="100">200</SelectItem>
+                  <SelectItem value="1000">500</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>
           </div>
           <div>
-            <button>Randomize</button>
+            <button onClick={resetArrayAndAnimate} className="border-2 rounded-md p-1 px-2">Randomize</button>
           </div>
         </div>
       </main>
