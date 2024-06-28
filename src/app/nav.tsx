@@ -36,7 +36,11 @@ const Nav = () => {
         </div>
         <div className="flex gap-4 justify-center items-center">
           <div>
-            <Select onValueChange={(value:SortingAlgorithm) => setSelectedAlgorithm(value)}>
+            <Select
+              onValueChange={(value: SortingAlgorithm) =>
+                setSelectedAlgorithm(value)
+              }
+            >
               <SelectTrigger className="w-[180px]" disabled={isSorting}>
                 <SelectValue placeholder="Sort algorithm" />
               </SelectTrigger>

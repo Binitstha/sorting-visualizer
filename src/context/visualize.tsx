@@ -8,7 +8,7 @@ import {
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const SortingAlgorithmContext = createContext<AlgorithmContextType | undefined>(
-  undefined
+  undefined,
 );
 
 export const SortingAlgorithmContextProvider = ({
@@ -60,7 +60,7 @@ export const SortingAlgorithmContextProvider = ({
 
     setTimeout(() => {
       const arrayLines = document.getElementsByClassName(
-        "array-lines"
+        "array-lines",
       ) as HTMLCollectionOf<HTMLElement>;
       for (let i = 0; i < arrayLines.length; i++) {
         // arrayLines[i].classList.remove("bg-red-700");
@@ -74,13 +74,13 @@ export const SortingAlgorithmContextProvider = ({
 
     const inverseSpeed = (1 / animationSpeed) * 200;
     const arrayLines = document.getElementsByClassName(
-      "array-lines"
+      "array-lines",
     ) as HTMLCollectionOf<HTMLElement>;
 
     const updateClassList = (
       indexes: number[],
       addClassName: string,
-      removeClassName: string
+      removeClassName: string,
     ) => {
       indexes.forEach((element) => {
         const line = arrayLines[element];
@@ -91,7 +91,7 @@ export const SortingAlgorithmContextProvider = ({
 
     const updateLineHeight = (
       lineIndex: number,
-      newLineHeight: number | undefined
+      newLineHeight: number | undefined,
     ) => {
       if (newLineHeight === undefined) return;
       arrayLines[lineIndex].style.height = `${newLineHeight}px`;
@@ -126,7 +126,7 @@ export const SortingAlgorithmContextProvider = ({
           line.classList.remove(
             "animate-pulse",
             "duration-400",
-            "bg-stone-500"
+            "bg-stone-500",
           );
           line.classList.add("bg-stone-700");
         });
@@ -163,7 +163,7 @@ export const useSortingAlgorithmContext = () => {
   const context = useContext(SortingAlgorithmContext);
   if (!context)
     throw new Error(
-      "useSortingAlgorithmContext must be used within a SortingAlgorithmContextProvider"
+      "useSortingAlgorithmContext must be used within a SortingAlgorithmContextProvider",
     );
   return context;
 };

@@ -1,4 +1,5 @@
 import { generateBubbleSortAnimation } from "@/algorithms/bubbleSort";
+import { generateMergeSortAnimation } from "@/algorithms/mergeSort";
 import { generateSelectionSortAnimation } from "@/algorithms/selectionSort";
 import { Animations, SortingAlgorithm } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
@@ -20,7 +21,7 @@ export const generateAnimationArray = (
   selectedAlgorithm: SortingAlgorithm,
   isSorting: boolean,
   array: number[],
-  runAnimation: (animations: Animations) => void
+  runAnimation: (animations: Animations) => void,
 ) => {
   switch (selectedAlgorithm) {
     case "bubble":
