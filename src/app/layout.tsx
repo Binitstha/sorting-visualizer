@@ -7,7 +7,8 @@ const inter = Inter({ subsets: ["latin"] });
 
 export const metadata: Metadata = {
   title: "Sorting visualizer",
-  description: "Sorting visualiser for bubble sort,merge sort,selection sort, insertion sort,quick sort with animation",
+  description:
+    "Sorting visualiser for bubble sort,merge sort,selection sort, insertion sort,quick sort with animation",
 };
 
 export default function RootLayout({

@@ -46,7 +46,7 @@ export const SortingAlgorithmContextProvider = ({
       ? userInputArrayLength
       : contentContainerWidth / 15;
     const containerHeight = window.innerHeight;
-    const maxLineHeight = Math.max(containerHeight - 390, 100);
+    const maxLineHeight = Math.max(containerHeight - 420, 100);
     for (let i = 0; i < numLines; i++) {
       tempArray.push(generateRandomNumber(40, maxLineHeight));
     }
@@ -66,7 +66,7 @@ export const SortingAlgorithmContextProvider = ({
         "array-lines",
       ) as HTMLCollectionOf<HTMLElement>;
       for (let i = 0; i < arrayLines.length; i++) {
-        // arrayLines[i].classList.remove("bg-white");
+        arrayLines[i].classList.remove("bg-white");
         arrayLines[i].classList.add("bg-stone-700");
       }
     }, 0);

@@ -69,10 +69,9 @@ const Nav = () => {
                   <SelectGroup>
                     <SelectLabel>select size</SelectLabel>
                     <SelectItem value="10">10</SelectItem>
-                    <SelectItem value="20">50</SelectItem>
-                    <SelectItem value="50">100</SelectItem>
-                    <SelectItem value="100">200</SelectItem>
-                    <SelectItem value="1000">500</SelectItem>
+                    <SelectItem value="30">50</SelectItem>
+                    <SelectItem value="70">100</SelectItem>
+                    <SelectItem value="130">200</SelectItem>
                   </SelectGroup>
                 </SelectContent>
               </Select>
