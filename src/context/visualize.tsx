@@ -63,7 +63,7 @@ export const SortingAlgorithmContextProvider = ({
         "array-lines"
       ) as HTMLCollectionOf<HTMLElement>;
       for (let i = 0; i < arrayLines.length; i++) {
-        arrayLines[i].classList.remove("bg-green-300");
+        // arrayLines[i].classList.remove("bg-red-700");
         arrayLines[i].classList.add("bg-stone-700");
       }
     }, 0);
@@ -83,8 +83,9 @@ export const SortingAlgorithmContextProvider = ({
       removeClassName: string
     ) => {
       indexes.forEach((element) => {
-        arrayLines[element].classList.add(addClassName);
-        arrayLines[element].classList.remove(removeClassName);
+        const line = arrayLines[element];
+        line.classList.remove(removeClassName);
+        line.classList.add(addClassName);
       });
     };
 
@@ -101,9 +102,9 @@ export const SortingAlgorithmContextProvider = ({
         const [values, isSwap] = animation;
 
         if (!isSwap) {
-          updateClassList(values, "bg-green-300", "bg-stone-700");
+          updateClassList(values, "bg-red-700", "bg-stone-700");
           setTimeout(() => {
-            updateClassList(values, "bg-stone-700", "bg-green-300");
+            updateClassList(values, "bg-stone-700", "bg-red-700");
           }, inverseSpeed);
         } else {
           const [lineIndex, newLineHeight] = values;
@@ -111,6 +112,28 @@ export const SortingAlgorithmContextProvider = ({
         }
       }, index * inverseSpeed);
     });
+
+    const finalTimeout = animations.length * inverseSpeed;
+
+    setTimeout(() => {
+      Array.from(arrayLines).forEach((line) => {
+        line.classList.add("animate-pulse", "bg-stone-500", "duration-400");
+        line.classList.remove("bg-stone-700");
+      });
+
+      setTimeout(() => {
+        Array.from(arrayLines).forEach((line) => {
+          line.classList.remove(
+            "animate-pulse",
+            "duration-400",
+            "bg-stone-500"
+          );
+          line.classList.add("bg-stone-700");
+        });
+        setIsSorting(false);
+        setIsAnimationComplete(true);
+      }, 1000);
+    }, finalTimeout);
   };
 
   const value = {

@@ -14,6 +14,8 @@ export interface AlgorithmContextType {
   requireReset: boolean;
 }
 
-export type SortingAlgorithm = {};
+// export type SortingAlgorithm = string;
+export type SortingAlgorithm = 'bubble' | 'merge' | 'selection' | 'insertion' | 'quick';
+
 
 export type Animations = [number[], boolean][];
