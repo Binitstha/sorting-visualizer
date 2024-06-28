@@ -24,7 +24,7 @@ const Nav = () => {
   return (
     <>
       <main
-        className={`flex justify-between p-5 h-full items-center ${roboto.className}`}
+        className={`flex justify-between lg:gap-0 gap-5 lg:flex-row flex-col p-5 h-full items-center ${roboto.className}`}
       >
         <div>
           <Link href={"./"}>
@@ -33,48 +33,50 @@ const Nav = () => {
             </h1>
           </Link>
         </div>
-        <div className="flex gap-4 justify-center items-center">
-          <div>
-            <Select
-              onValueChange={(value: SortingAlgorithm) =>
-                setSelectedAlgorithm(value)
-              }
-            >
-              <SelectTrigger className="w-[180px]" disabled={isSorting}>
-                <SelectValue placeholder="Sort algorithm" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>Sort algorithm</SelectLabel>
-                  <SelectItem value="bubble">Bubble sort</SelectItem>
-                  <SelectItem value="quick">Quick sort</SelectItem>
-                  <SelectItem value="merge">Merge sort</SelectItem>
-                  <SelectItem value="insertion">Insertion sort</SelectItem>
-                  <SelectItem value="selection">Selection sort</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
-          </div>
-          <div>
-            <Select
-              onValueChange={(value: string) =>
-                setUserInputArrayLength(parseInt(value))
-              }
-            >
-              <SelectTrigger className="w-[180px]" disabled={isSorting}>
-                <SelectValue placeholder="Select size" />
-              </SelectTrigger>
-              <SelectContent>
-                <SelectGroup>
-                  <SelectLabel>select size</SelectLabel>
-                  <SelectItem value="10">10</SelectItem>
-                  <SelectItem value="20">50</SelectItem>
-                  <SelectItem value="50">100</SelectItem>
-                  <SelectItem value="100">200</SelectItem>
-                  <SelectItem value="1000">500</SelectItem>
-                </SelectGroup>
-              </SelectContent>
-            </Select>
+        <div className="flex lg:flex-row flex-col gap-4 justify-center items-center">
+          <div className="flex gap-3">
+            <div>
+              <Select
+                onValueChange={(value: SortingAlgorithm) =>
+                  setSelectedAlgorithm(value)
+                }
+              >
+                <SelectTrigger className="w-[180px]" disabled={isSorting}>
+                  <SelectValue placeholder="Sort algorithm" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>Sort algorithm</SelectLabel>
+                    <SelectItem value="bubble">Bubble sort</SelectItem>
+                    <SelectItem value="quick">Quick sort</SelectItem>
+                    <SelectItem value="merge">Merge sort</SelectItem>
+                    <SelectItem value="insertion">Insertion sort</SelectItem>
+                    <SelectItem value="selection">Selection sort</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
+            <div>
+              <Select
+                onValueChange={(value: string) =>
+                  setUserInputArrayLength(parseInt(value))
+                }
+              >
+                <SelectTrigger className="w-[180px]" disabled={isSorting}>
+                  <SelectValue placeholder="Select size" />
+                </SelectTrigger>
+                <SelectContent>
+                  <SelectGroup>
+                    <SelectLabel>select size</SelectLabel>
+                    <SelectItem value="10">10</SelectItem>
+                    <SelectItem value="20">50</SelectItem>
+                    <SelectItem value="50">100</SelectItem>
+                    <SelectItem value="100">200</SelectItem>
+                    <SelectItem value="1000">500</SelectItem>
+                  </SelectGroup>
+                </SelectContent>
+              </Select>
+            </div>
           </div>
           <div>
             <button

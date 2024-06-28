@@ -23,7 +23,7 @@ const AlgorithVisualizer = () => {
       selectedAlgorithm,
       isSorting,
       arrayToSort,
-      runAnimation
+      runAnimation,
     );
   };
   return (
@@ -40,10 +40,10 @@ const AlgorithVisualizer = () => {
           ></div>
         ))}
       </div>
-      <div className="flex gap-5 relative justify-center items-center">
+      <div className="flex gap-5 relative lg:justify-center lg:p-0 px-5 items-center">
         <div>
           <div
-            className="cursor-pointer p-3 transition-all duration-500 rounded-full bg-stone-700 flex justify-center items-center"
+            className="cursor-pointer p-3 transition-all duration-500 rounded-full bg-stone-700 flex justify-start items-center"
             onClick={handleClick}
           >
             {isSorting ? (
@@ -57,7 +57,7 @@ const AlgorithVisualizer = () => {
           <div
             className={clsx(
               isSorting ? "opacity-60 cursor-not-allowed" : "opacity-100",
-              "flex gap-2 justify-center items-center w-36"
+              "flex gap-2 justify-center items-center w-36",
             )}
           >
             <p>{animationSpeed}x</p>

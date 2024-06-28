@@ -23,5 +23,4 @@ export type SortingAlgorithm =
   | "insertion"
   | "quick";
 
-
 export type Animations = [number[], boolean][];

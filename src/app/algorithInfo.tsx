@@ -8,19 +8,19 @@ const AlgorithmInfo = () => {
 
   return (
     <>
-      <div className=" flex justify-center items-center p-8">
-        <div className="w-[35rem] p-6 h-96">
+      <div className=" flex justify-center items-center lg:p-8 p-5">
+        <div className="lg:w-[35rem] lg:p-6 h-96 p-3">
           <div className=" flex justify-start flex-col items-center gap-8">
-            <h2 className="text-3xl h-16 flex justify-center items-center">
+            <h2 className="lg:text-3xl text-xl h-16 flex justify-center items-center">
               {algorithmData.title}
             </h2>
-            <p className="text-lg">{algorithmData.description}</p>
+            <p className="lg:text-lg text-sm">{algorithmData.description}</p>
           </div>
         </div>
         <div className="border h-80"></div>
-        <div className="w-[35rem] p-6 h-96">
-          <div className="flex text-lg justify-start flex-col items-start gap-8">
-            <h2 className="text-3xl h-16 flex justify-center w-full items-center">
+        <div className="w-[35rem] lg:p-6 h-96 p-3">
+          <div className="flex lg:text-lg text-sm justify-start flex-col items-start gap-8">
+            <h2 className="lg:text-3xl text-xl h-16 flex justify-center w-full items-center">
               Performance
             </h2>
             <div>
