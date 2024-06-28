@@ -36,7 +36,7 @@ const insertionSort = (array: number[], animations: Animations) => {
 export const generateInsertionSortAnimation = (
   isSorting: boolean,
   array: number[],
-  runAnimation: (animations: Animations) => void
+  runAnimation: (animations: Animations) => void,
 ) => {
   if (isSorting) return;
   if (array.length <= 1) return;

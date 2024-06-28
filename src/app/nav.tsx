@@ -11,7 +11,6 @@ import {
 import Link from "next/link";
 import { roboto, roboto_mono } from "./fonts";
 import { useSortingAlgorithmContext } from "@/context/visualize";
-import { useEffect } from "react";
 import { SortingAlgorithm } from "@/types/types";
 
 const Nav = () => {
@@ -19,7 +18,7 @@ const Nav = () => {
     resetArrayAndAnimate,
     isSorting,
     setSelectedAlgorithm,
-    selectedAlgorithm,
+    setUserInputArrayLength,
   } = useSortingAlgorithmContext();
 
   return (
@@ -57,7 +56,11 @@ const Nav = () => {
             </Select>
           </div>
           <div>
-            <Select>
+            <Select
+              onValueChange={(value: string) =>
+                setUserInputArrayLength(parseInt(value))
+              }
+            >
               <SelectTrigger className="w-[180px]" disabled={isSorting}>
                 <SelectValue placeholder="Select size" />
               </SelectTrigger>

@@ -22,7 +22,7 @@ export const generateAnimationArray = (
   selectedAlgorithm: SortingAlgorithm,
   isSorting: boolean,
   array: number[],
-  runAnimation: (animations: Animations) => void
+  runAnimation: (animations: Animations) => void,
 ) => {
   switch (selectedAlgorithm) {
     case "bubble":

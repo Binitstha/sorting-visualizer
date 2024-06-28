@@ -23,13 +23,13 @@ const AlgorithVisualizer = () => {
       selectedAlgorithm,
       isSorting,
       arrayToSort,
-      runAnimation,
+      runAnimation
     );
   };
   return (
     <section className="p-7 flex flex-col gap-5 relative px-16 h-[40rem]">
       <div
-        className="border h-full rounded-md bottom-10 flex justify-center px-3 items-end gap-2"
+        className="border h-full transition-all duration-200 rounded-md bottom-10 flex justify-center px-3 items-end gap-2"
         id="contentContainer"
       >
         {arrayToSort.map((value, index) => (
@@ -57,7 +57,7 @@ const AlgorithVisualizer = () => {
           <div
             className={clsx(
               isSorting ? "opacity-60 cursor-not-allowed" : "opacity-100",
-              "flex gap-2 justify-center items-center w-36",
+              "flex gap-2 justify-center items-center w-36"
             )}
           >
             <p>{animationSpeed}x</p>

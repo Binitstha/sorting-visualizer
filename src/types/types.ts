@@ -12,14 +12,16 @@ export interface AlgorithmContextType {
   resetArrayAndAnimate: () => void;
   runAnimation: (animations: Animations) => void;
   requireReset: boolean;
+  userInputArrayLength: number | undefined;
+  setUserInputArrayLength: (userInputArrayLength: number) => void;
 }
 
-// export type SortingAlgorithm = string;
 export type SortingAlgorithm =
   | "bubble"
   | "merge"
   | "selection"
   | "insertion"
   | "quick";
+
 
 export type Animations = [number[], boolean][];

@@ -1,6 +1,11 @@
 import { Animations } from "@/types/types";
 
-const partition = (array: number[], low: number, high: number, animations: Animations): number => {
+const partition = (
+  array: number[],
+  low: number,
+  high: number,
+  animations: Animations,
+): number => {
   const pivot = array[high];
   let i = low - 1;
 
@@ -21,7 +26,12 @@ const partition = (array: number[], low: number, high: number, animations: Anima
   return i + 1;
 };
 
-const runQuicksort = (array: number[], low: number, high: number, animations: Animations) => {
+const runQuicksort = (
+  array: number[],
+  low: number,
+  high: number,
+  animations: Animations,
+) => {
   if (low < high) {
     const partitionIndex = partition(array, low, high, animations);
     runQuicksort(array, low, partitionIndex - 1, animations);
@@ -32,7 +42,7 @@ const runQuicksort = (array: number[], low: number, high: number, animations: An
 export const generateQuicksortAnimation = (
   isSorting: boolean,
   array: number[],
-  runAnimation: (animations: Animations) => void
+  runAnimation: (animations: Animations) => void,
 ) => {
   if (isSorting) return;
   if (array.length <= 1) return;

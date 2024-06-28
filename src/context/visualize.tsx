@@ -8,7 +8,7 @@ import {
 import React, { createContext, useContext, useEffect, useState } from "react";
 
 const SortingAlgorithmContext = createContext<AlgorithmContextType | undefined>(
-  undefined,
+  undefined
 );
 
 export const SortingAlgorithmContextProvider = ({
@@ -24,6 +24,7 @@ export const SortingAlgorithmContextProvider = ({
   const [isAnimationComplete, setIsAnimationComplete] =
     useState<boolean>(false);
   const requireReset: boolean = true;
+  const [userInputArrayLength, setUserInputArrayLength] = useState<number>();
 
   useEffect(() => {
     resetArrayAndAnimate();
@@ -41,7 +42,9 @@ export const SortingAlgorithmContextProvider = ({
     if (!contentContainer) return;
     const contentContainerWidth = contentContainer.clientWidth;
     const tempArray: number[] = [];
-    const numLines = contentContainerWidth / 15;
+    const numLines = userInputArrayLength
+      ? userInputArrayLength
+      : contentContainerWidth / 15;
     const containerHeight = window.innerHeight;
     const maxLineHeight = Math.max(containerHeight - 390, 100);
     for (let i = 0; i < numLines; i++) {
@@ -60,10 +63,10 @@ export const SortingAlgorithmContextProvider = ({
 
     setTimeout(() => {
       const arrayLines = document.getElementsByClassName(
-        "array-lines",
+        "array-lines"
       ) as HTMLCollectionOf<HTMLElement>;
       for (let i = 0; i < arrayLines.length; i++) {
-        // arrayLines[i].classList.remove("bg-red-700");
+        // arrayLines[i].classList.remove("bg-white");
         arrayLines[i].classList.add("bg-stone-700");
       }
     }, 0);
@@ -72,15 +75,15 @@ export const SortingAlgorithmContextProvider = ({
   const runAnimation = (animations: Animations) => {
     setIsSorting(true);
 
-    const inverseSpeed = (1 / animationSpeed) * 200;
+    const inverseSpeed = (1 / animationSpeed) * 400;
     const arrayLines = document.getElementsByClassName(
-      "array-lines",
+      "array-lines"
     ) as HTMLCollectionOf<HTMLElement>;
 
     const updateClassList = (
       indexes: number[],
       addClassName: string,
-      removeClassName: string,
+      removeClassName: string
     ) => {
       indexes.forEach((element) => {
         const line = arrayLines[element];
@@ -91,7 +94,7 @@ export const SortingAlgorithmContextProvider = ({
 
     const updateLineHeight = (
       lineIndex: number,
-      newLineHeight: number | undefined,
+      newLineHeight: number | undefined
     ) => {
       if (newLineHeight === undefined) return;
       arrayLines[lineIndex].style.height = `${newLineHeight}px`;
@@ -102,9 +105,9 @@ export const SortingAlgorithmContextProvider = ({
         const [values, isSwap] = animation;
 
         if (!isSwap) {
-          updateClassList(values, "bg-red-700", "bg-stone-700");
+          updateClassList(values, "bg-white", "bg-stone-700");
           setTimeout(() => {
-            updateClassList(values, "bg-stone-700", "bg-red-700");
+            updateClassList(values, "bg-stone-700", "bg-white");
           }, inverseSpeed);
         } else {
           const [lineIndex, newLineHeight] = values;
@@ -117,7 +120,7 @@ export const SortingAlgorithmContextProvider = ({
 
     setTimeout(() => {
       Array.from(arrayLines).forEach((line) => {
-        line.classList.add("animate-pulse", "bg-stone-500", "duration-400");
+        line.classList.add("animate-pulse", "bg-stone-600", "duration-400");
         line.classList.remove("bg-stone-700");
       });
 
@@ -126,7 +129,7 @@ export const SortingAlgorithmContextProvider = ({
           line.classList.remove(
             "animate-pulse",
             "duration-400",
-            "bg-stone-500",
+            "bg-stone-600"
           );
           line.classList.add("bg-stone-700");
         });
@@ -150,6 +153,8 @@ export const SortingAlgorithmContextProvider = ({
     resetArrayAndAnimate,
     runAnimation,
     requireReset,
+    userInputArrayLength,
+    setUserInputArrayLength,
   };
 
   return (
@@ -163,7 +168,7 @@ export const useSortingAlgorithmContext = () => {
   const context = useContext(SortingAlgorithmContext);
   if (!context)
     throw new Error(
-      "useSortingAlgorithmContext must be used within a SortingAlgorithmContextProvider",
+      "useSortingAlgorithmContext must be used within a SortingAlgorithmContextProvider"
     );
   return context;
 };
