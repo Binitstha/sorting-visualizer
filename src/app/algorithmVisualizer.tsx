@@ -1,12 +1,15 @@
 "use client";
 import { Slider } from "@/components/ui/slider";
 import { useSortingAlgorithmContext } from "@/context/visualize";
+import { generateAnimationArray } from "@/lib/utils";
+import clsx from "clsx";
 import { useEffect } from "react";
 import { FaPlay } from "react-icons/fa";
 import { GrPowerReset } from "react-icons/gr";
 
 const AlgorithVisualizer = () => {
-  const { arrayToSort, isSorting } = useSortingAlgorithmContext();
+  const { arrayToSort, isSorting, selectedAlgorithm, runAnimation } =
+    useSortingAlgorithmContext();
 
   const {
     animationSpeed,
@@ -16,8 +19,13 @@ const AlgorithVisualizer = () => {
   } = useSortingAlgorithmContext();
 
   const handleClick = () => {
-    if (requireReset) resetArrayAndAnimate();
-    return;
+    resetArrayAndAnimate();
+    generateAnimationArray(
+      selectedAlgorithm,
+      isSorting,
+      arrayToSort,
+      runAnimation
+    );
   };
   return (
     <section className=" p-7 flex flex-col gap-5 relative px-16 h-[40rem]">
@@ -28,7 +36,7 @@ const AlgorithVisualizer = () => {
         {arrayToSort.map((value, index) => (
           <div
             key={index}
-            className="array-lines h-[15rem] w-4 bg-stone-700 rounded-md rounded-b-none"
+            className="array-lines transition-transform duration-150 h-[15rem] w-4 bg-stone-700 rounded-md rounded-b-none"
             style={{ height: `${value}px` }}
           ></div>
         ))}
@@ -37,13 +45,24 @@ const AlgorithVisualizer = () => {
         <div>
           <div
             className=" cursor-pointer p-3 transition-all duration-500 rounded-full bg-stone-700 flex justify-center items-center"
-            onClick={() => handleClick}
+            onClick={() => handleClick()}
           >
-            {isSorting ? <GrPowerReset /> : <FaPlay />}
+            {isSorting ? (
+              <GrPowerReset />
+            ) : (
+              <FaPlay className="text-center overflow-visible" />
+            )}
           </div>
         </div>
         <div className="w-fit absolute right-4">
-          <div className="flex gap-2 justify-center items-center w-36">
+          <div
+            className={
+              (clsx(
+                isSorting ? "opacity-[0.6] cursor-not-allowed" : "opacity-10"
+              ),
+              "flex gap-2 justify-center items-center w-36")
+            }
+          >
             <p>{animationSpeed}x</p>
             <Slider
               defaultValue={[50]}

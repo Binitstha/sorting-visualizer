@@ -1,4 +1,5 @@
-import { SortingAlgorithm } from "@/types/types";
+import { generateBubbleSortAnimation } from "@/algorithms/bubbleSort";
+import { Animations, SortingAlgorithm } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
 import { twMerge } from "tailwind-merge";
 
@@ -17,10 +18,11 @@ export const generateAnimationArray = (
   selectedAlgorithm: SortingAlgorithm,
   isSorting: boolean,
   array: number[],
-  runAnimation: (animations: Animation) => void
+  runAnimation: (animations: Animations) => void
 ) => {
   switch (selectedAlgorithm) {
     case "bubble":
+      generateBubbleSortAnimation(isSorting, array, runAnimation);
       break;
     default:
       break;

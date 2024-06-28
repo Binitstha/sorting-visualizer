@@ -21,9 +21,6 @@ const Nav = () => {
     selectedAlgorithm,
   } = useSortingAlgorithmContext();
 
-  useEffect(() => {
-    console.log(selectedAlgorithm);
-  }, [selectedAlgorithm]);
   return (
     <>
       <main

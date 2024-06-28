@@ -23,7 +23,7 @@ export const SortingAlgorithmContextProvider = ({
   const [animationSpeed, setAnimationSpeed] = useState<number>(50);
   const [isAnimationComplete, setIsAnimationComplete] =
     useState<boolean>(false);
-  const requireReset: boolean = false;
+  const requireReset: boolean = true;
 
   useEffect(() => {
     resetArrayAndAnimate();
@@ -51,12 +51,31 @@ export const SortingAlgorithmContextProvider = ({
     setArrayToSort(tempArray);
     setIsAnimationComplete(false);
     setIsSorting(false);
+
+    const highestId = window.setTimeout(() => {
+      for (let i = highestId; i >= 0; i--) {
+        window.clearTimeout(i);
+      }
+    }, 0);
+
+    setTimeout(() => {
+      const arrayLines = document.getElementsByClassName(
+        "array-lines"
+      ) as HTMLCollectionOf<HTMLElement>;
+      for (let i = 0; i < arrayLines.length; i++) {
+        arrayLines[i].classList.remove("bg-green-300");
+        arrayLines[i].classList.add("bg-stone-700");
+      }
+    }, 0);
   };
+
   const runAnimation = (animations: Animations) => {
     setIsSorting(true);
 
     const inverseSpeed = (1 / animationSpeed) * 200;
-    const arrayLines = document.getElementsByClassName("array-lines");
+    const arrayLines = document.getElementsByClassName(
+      "array-lines"
+    ) as HTMLCollectionOf<HTMLElement>;
 
     const updateClassList = (
       indexes: number[],
@@ -74,8 +93,7 @@ export const SortingAlgorithmContextProvider = ({
       newLineHeight: number | undefined
     ) => {
       if (newLineHeight === undefined) return;
-      (arrayLines[lineIndex] as HTMLElement).style.height =
-        `${newLineHeight}px`;
+      arrayLines[lineIndex].style.height = `${newLineHeight}px`;
     };
 
     animations.forEach((animation, index) => {
@@ -83,9 +101,9 @@ export const SortingAlgorithmContextProvider = ({
         const [values, isSwap] = animation;
 
         if (!isSwap) {
-          updateClassList(values, "bg-red-300", "bg-green-300");
+          updateClassList(values, "bg-green-300", "bg-stone-700");
           setTimeout(() => {
-            updateClassList(values, "bg-green-300", "bg-red-300");
+            updateClassList(values, "bg-stone-700", "bg-green-300");
           }, inverseSpeed);
         } else {
           const [lineIndex, newLineHeight] = values;
