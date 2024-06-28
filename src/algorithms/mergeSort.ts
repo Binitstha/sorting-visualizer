@@ -1,13 +1,21 @@
 import { Animations } from "@/types/types";
 
-const merge = (array: number[], left: number, mid: number, right: number, animations: Animations) => {
+const merge = (
+  array: number[],
+  left: number,
+  mid: number,
+  right: number,
+  animations: Animations,
+) => {
   const n1 = mid - left + 1;
   const n2 = right - mid;
 
   const leftArray = array.slice(left, left + n1);
   const rightArray = array.slice(mid + 1, mid + 1 + n2);
 
-  let i = 0, j = 0, k = left;
+  let i = 0,
+    j = 0,
+    k = left;
 
   while (i < n1 && j < n2) {
     animations.push([[left + i, mid + 1 + j], false]);
@@ -31,7 +39,12 @@ const merge = (array: number[], left: number, mid: number, right: number, animat
   }
 };
 
-const runMergeSort = (array: number[], left: number, right: number, animations: Animations) => {
+const runMergeSort = (
+  array: number[],
+  left: number,
+  right: number,
+  animations: Animations,
+) => {
   if (left >= right) return;
 
   const mid = Math.floor(left + (right - left) / 2);
@@ -45,7 +58,7 @@ const runMergeSort = (array: number[], left: number, right: number, animations: 
 export const generateMergeSortAnimation = (
   isSorting: boolean,
   array: number[],
-  runAnimation: (animations: Animations) => void
+  runAnimation: (animations: Animations) => void,
 ) => {
   if (isSorting) return;
   if (array.length <= 1) return;

@@ -47,11 +47,11 @@ const Nav = () => {
               <SelectContent>
                 <SelectGroup>
                   <SelectLabel>Sort algorithm</SelectLabel>
-                  <SelectItem value="bubble">Bubble</SelectItem>
-                  <SelectItem value="quick">Quick</SelectItem>
-                  <SelectItem value="merge">Merge</SelectItem>
-                  <SelectItem value="insertion">Insertion</SelectItem>
-                  <SelectItem value="selection">Selection</SelectItem>
+                  <SelectItem value="bubble">Bubble sort</SelectItem>
+                  <SelectItem value="quick">Quick sort</SelectItem>
+                  <SelectItem value="merge">Merge sort</SelectItem>
+                  <SelectItem value="insertion">Insertion sort</SelectItem>
+                  <SelectItem value="selection">Selection sort</SelectItem>
                 </SelectGroup>
               </SelectContent>
             </Select>

@@ -1,9 +1,10 @@
 import { generateBubbleSortAnimation } from "@/algorithms/bubbleSort";
+import { generateInsertionSortAnimation } from "@/algorithms/insertionSort";
 import { generateMergeSortAnimation } from "@/algorithms/mergeSort";
+import { generateQuicksortAnimation } from "@/algorithms/quickSort";
 import { generateSelectionSortAnimation } from "@/algorithms/selectionSort";
 import { Animations, SortingAlgorithm } from "@/types/types";
 import { type ClassValue, clsx } from "clsx";
-import { title } from "process";
 import { twMerge } from "tailwind-merge";
 
 export function cn(...inputs: ClassValue[]) {
@@ -21,7 +22,7 @@ export const generateAnimationArray = (
   selectedAlgorithm: SortingAlgorithm,
   isSorting: boolean,
   array: number[],
-  runAnimation: (animations: Animations) => void,
+  runAnimation: (animations: Animations) => void
 ) => {
   switch (selectedAlgorithm) {
     case "bubble":
@@ -32,6 +33,12 @@ export const generateAnimationArray = (
       break;
     case "merge":
       generateMergeSortAnimation(isSorting, array, runAnimation);
+      break;
+    case "quick":
+      generateQuicksortAnimation(isSorting, array, runAnimation);
+      break;
+    case "insertion":
+      generateInsertionSortAnimation(isSorting, array, runAnimation);
       break;
     default:
       break;
